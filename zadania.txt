@@ -1,0 +1,6 @@
+Opis zadañ do wykonania.
+W pierwszej kolejnoœci:
+1. ZadPorogAlgorytmEwolucyjny - napisaæ kod który wygeneruje wzór losowej funkcji 
+(tutaj zastosowanie programowania ewolucyjengo odpowiednio wykorzystanie populacji pocz¹tkowych i odpowiednio wygenerowanie wzoru funkcji) 
+Aplikacja w przesy³anej formie zawiera ju¿ ca³e api ... jedynie co trzeba zrobiæ to dopisaæ fragmenty kodu
+2. Zadania.7z - symulowane wy¿arzanie, w pierwszym znaleŸæ minimum funkcji, w drugim znaleŸæ minimum na p³aszczyŸnie dwuwymiarowej
