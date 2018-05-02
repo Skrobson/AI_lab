@@ -45,6 +45,11 @@ namespace ISE_Z2
 		int minX = 50;
 		int minY = 50;
 
+        //minimum na plaszczyznie
+        double min = 0;
+        int mx = 0;
+        int my = 0;
+
 		#region opengl
 		//rysowanie siatki
 		private void openGLControl1_OpenGLDraw( object sender, PaintEventArgs e )
@@ -111,13 +116,21 @@ namespace ISE_Z2
 				impact = rand.Next( 100 );
 				ChangeHeight( x, y, direction, value, impact );
 			}
+            label1.Text = "Min: " + min;
+            label2.Text = "W punkcie P(" + mx + "," + my + ").";
 		}
 
 		#region przesuwanie obroty itp.
 		private void ChangeHeight( int x, int y, int direction, double value, int impact )
 		{
 			heightArray[ x ][ y ] += direction * value;
-		}
+            if (heightArray[x][y] < min)
+            {
+                min = heightArray[x][y];
+                mx = x;
+                my = y;
+            }
+        }
 
 		private void button1_Click( object sender, EventArgs e )
 		{
