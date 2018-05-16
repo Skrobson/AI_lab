@@ -70,8 +70,13 @@ namespace ISE_Z2
 			gl.Vertex( ( minY - ( heightArray.Length / 2 ) ) * multt, ( minX - ( heightArray.Length / 2 ) ) * multt, heightArray[ minY ][ minX ] );
 			gl.Vertex( ( minY - ( heightArray.Length / 2 ) ) * multt, ( minX + 1 - ( heightArray.Length / 2 ) ) * multt, heightArray[ minY + 1 ][ minX ] );
 			gl.Vertex( ( minY + 1 - ( heightArray.Length / 2 ) ) * multt, ( minX - ( heightArray.Length / 2 ) ) * multt, heightArray[ minY ][ minX + 1 ] );
+            gl.Color(0,0,1,1);
 
-			gl.End();
+            gl.Vertex(my - (heightArray.Length / 2), mx - (heightArray.Length / 2), heightArray[mx][my]);
+            gl.Vertex(my - (heightArray.Length / 2), mx + 1 - (heightArray.Length / 2), heightArray[mx + 1][my]);
+            gl.Vertex(my + 1 - (heightArray.Length / 2), mx - (heightArray.Length / 2), heightArray[mx][my + 1]);
+
+            gl.End();
 
 			gl.Color( 1, 1, 1, 1 );
 			gl.Begin( OpenGL.LINES );
@@ -79,9 +84,10 @@ namespace ISE_Z2
 			{
 				for ( int j = 0; j < heightArray[ 0 ].Length - 1; j++ )
 				{
-					DrawTriangle( gl, i, j );
+                    DrawTriangle( gl, i, j );
 				}
 			}
+
 			gl.End();
 		}
 
