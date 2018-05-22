@@ -124,12 +124,29 @@ namespace ISE_Z1
 			RefreshGraph();
 		}
 
-		private void CreateGeneration()
-		{
-			List<string> newPopulationList = new List<string>();
-			//TODO wype³niæ
-
-			//population = newPopulationList;
+        private void CreateGeneration()
+        {
+            List<string> newPopulationList = new List<string>();
+            for (int i = 0; i < population.Count; i++)
+            {
+                double sumDouble = 0.0;
+                double maxVal = 0.0;
+                string[] tempString = population[i].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                string final = "";
+                if ((rand.Next(0, 10) == 1)) final += Convert.ToString(rand.Next(-9999, 9999) * 0.000001) + " ";
+                for (int j = 0; (j < tempString.Length); j++)
+                {
+                    double tempDouble = Convert.ToDouble(tempString[j]);
+                    sumDouble +=  tempDouble;
+                    if (maxVal < tempDouble) maxVal = tempDouble;
+                    tempString[j] = Convert.ToString(tempDouble * rand.Next(-2, 2));
+                    final += tempString[j].ToString()+" ";
+                }
+                    final += " "+Convert.ToString(sumDouble * maxVal * 0.01);
+                if((rand.Next(0, 10) == 1)) final += " "+Convert.ToString(rand.Next(-99999, 99999)*0.0000001);
+                newPopulationList.Add(final);
+            }
+            population = newPopulationList;
 
 		}
 
