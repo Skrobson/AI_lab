@@ -16,7 +16,7 @@ namespace ISE_Z1
 			graph.GraphPane.Title.IsVisible = false;
 		}
 		//iloœæ punktów na wykresie
-		int pointAmount = 10000;
+		int pointAmount = 100;
 		//generator liczb pseudolosowych
 		Random rand = new Random( 1000 );
 		//lista punktów wykresu
@@ -64,20 +64,26 @@ namespace ISE_Z1
 		//szuka minimum
 		private void backgroundWorker_DoWork( object sender, DoWorkEventArgs e )
 		{
-			for ( int i = 0; i < ppl.Count; i++ )
+            mppl.Clear();
+            bool opad;
+            if (ppl[0].Y > ppl[1].Y) opad = true;
+            else opad = false;
+            for ( int i = 1; i < ppl.Count - 1; i++ )
 			{
 				if ( ( (BackgroundWorker)sender ).CancellationPending )
 				{
 					e.Cancel = true;
 					break;
 				}
-				mppl.Clear();
-
-				//TODO dodaæ kod wyszukuj¹cy
-				mppl.Add( new PointPair( i, ppl[ i ].Y ) );
-
-				RefreshGraph();
-			}
+                //opadajaca i znalezione minimum
+                if ((opad == true) && (ppl[i].Y < ppl[i + 1].Y))
+                {
+                    mppl.Add(new PointPair(i, ppl[i].Y));
+                    opad = false;
+                }
+                else if ((opad == false) && (ppl[i].Y > ppl[i + 1].Y)) opad = true;
+                RefreshGraph();
+            }
 
 		}
 
